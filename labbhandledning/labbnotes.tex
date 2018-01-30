@@ -1,0 +1,542 @@
+\documentclass[10pt]{memoir}
+\usepackage[margin=3.7cm,top=3cm,bottom=2cm]{geometry}
+%\documentclass[10pt,twoside,openright]{memoir}
+%\usepackage{createspace}
+%\usepackage[size=pocket,noicc]{createspace}
+%\usepackage[paperwidth=4.25in, paperheight=6.875in,bindingoffset=.75in]{geometry}
+%\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cancel}
+%\usepackage[spanish]{babel}
+%\usepackage{tgtermes}
+%\usepackage[pdftex,colorlinks]{hyperref}
+%\usepackage[sort&compress]{natbib}
+%\usepackage{hypernat}
+
+%\makeevenhead{headings}%
+%    {\thepage}{}{\slshape\bookname~\thebook\qquad\partname~\thepart\qquad\leftmark}
+%\makeoddhead{headings}{\slshape\rightmark}{}{\thepage}
+
+\usepackage{pdfpages}
+\usepackage[pdftex,colorlinks]{hyperref}
+%\usepackage[sort&compress,sectionbib]{natbib}
+%\usepackage{natbibsuper}
+%\usepackage[super,sort&compress]{natbib}
+\usepackage{hypernat}
+\usepackage{memhfixc}
+\usepackage{enumitem}
+
+\usepackage{listings}
+\lstset{escapeinside={<@}{@>}}
+
+
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+%emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+%frame=tb,                         % Any extra options here
+frame=single,
+showstringspaces=false            % 
+breaklines=true,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{black},%\color{blue},
+stringstyle=\color{orange}
+}}
+
+\newcommand\pythoninlinestyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+%frame=tb,                         % Any extra options here
+frame=single,
+showstringspaces=false            % 
+breaklines=true,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{black},%\color{blue},
+stringstyle=\color{orange}
+}}
+
+\newcommand\pythoninteractivestyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+%frame=tb,                         % Any extra options here
+frame=single,
+showstringspaces=false            % 
+breaklines=true,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{black},%\color{blue},
+stringstyle=\color{orange}
+}}
+
+\newcommand\cstyle{\lstset{
+language=c,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+%frame=tb,                         % Any extra options here
+frame=single,
+showstringspaces=false            % 
+breaklines=true,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{black},%\color{blue},
+stringstyle=\color{orange}
+}}
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python environment
+\lstnewenvironment{ccode}[1][]
+{
+\cstyle
+\lstset{#1}
+}
+{}
+
+% Python environment
+\lstnewenvironment{ipython}[1][]
+{
+\pythoninteractivestyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\fbox{\pythoninlinestyle\lstinline!#1!}}}
+
+%\usepackage{showframe}
+\usepackage{framed}
+\renewenvironment{shaded}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \colorbox{shadecolor}}%
+  \MakeFramed{\advance\hsize-\width \FrameRestore\FrameRestore}}%
+ {\endMakeFramed}
+\definecolor{shadecolor}{gray}{0.90}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\chapsubhead}[1]{%
+  \\{\Large\parbox{\textwidth}{#1}}%
+}
+
+%\chapterstyle{bringhurst}
+%\usepackage[sectionbib]{chapterbib}
+%\usepackage{amssymb,amsmath,amsthm,amsfonts,amscd,amsrefs}
+%\newcommand{\onlinecite}[1]{\hspace{-1 ex} \nocite{#1}\citenum{#1}} 
+%\newcommand{\citeonline}[1]{\hspace{-1 ex} \nocite{#1}\citenum{#1}} 
+
+%\makeatletter
+%\newenvironment{bibchapter}[1][\bibname]{%
+%    \begingroup
+%        \protected@edef\@{%
+%                \endgroup
+%            \protect\chapter*{#1}%
+%            \protect\bib@div@mark{#1}%
+%        }%
+%        \@\bibmark
+%}{\par}
+%\makeatother
+
+\renewcommand{\chaptername}{Laboration}
+
+%\usepackage{mathpazo}
+\usepackage[protrusion=true,expansion=true]{microtype}
+%\usepackage{type1cm}
+%\usepackage{lettrine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\argmin{\mathop{\mathrm{arg\,min}}}
+\newcommand{\tdef}[1]{\makebox[0 pt]{\index{#1}}\emph{#1}}
+\newcommand{\defsymb}[1]{\makebox[0 pt]{\index{#1}}#1}
+\newcommand{\indexsymb}[1]{\makebox[0 pt]{\index{#1}}}
+\newcommand{\defsymbx}[2]{\makebox[0 pt]{\index{#2}}#1}
+\newcommand{\tdefu}[1]{\makebox[0 pt]{\index{#1}}{#1}}
+\newcommand{\tdefx}[2]{\makebox[0 pt]{\index{#2}}\emph{#1}}
+%\newcommand{\rm}[1]{\mathrm{#1}}
+%\renewcommand{\it}{}
+%\renewcommand{\bf}{}
+\newcommand{\DD}[1]{\ensuremath{\frac{d}{d #1}}}
+\newcommand{\DN}[2]{\ensuremath{\frac{d^{#1}}{d #2^{#1}}}}
+\newcommand{\Dd}[1]{\ensuremath{\frac{\partial}{\partial #1}}}
+\newcommand{\Dn}[2]{\ensuremath{\frac{\partial^{#1}}{\partial #2^{#1}}}}
+%
+\newcommand{\dD}[2]{\ensuremath{\frac{d #1}{d #2}}}
+\newcommand{\dN}[3]{\ensuremath{\frac{d^{#1} #2}{d #3^{#1}}}}
+\newcommand{\dd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\dn}[3]{\ensuremath{\frac{\partial^{#1} #2}{\partial #3^{#1}}}}
+%
+\newcommand{\fD}[2]{\ensuremath{\frac{\delta #1}{\delta #2}}}
+%
+\newcommand{\td}[1]{\ensuremath{\tilde{#1}}}
+%\newcommand{\frac}[2]{\ensuremath{\frac{#1}{#2}}}
+%
+\newcommand{\UU}[1]{\ensuremath{\mathrm{\ #1}}}
+\newcommand{\CC}[1]{\ensuremath{\mbox{\ #1}}}
+\newcommand{\EE}[1]{\ensuremath{\cdot 10^{#1}}}
+%
+\newcommand{\eh}{\ensuremath{\hat{e}}}
+\newcommand{\vcint}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\vc}[1]{\protect\vcint{#1}}
+%\newcommand{\op}[1]{\ensuremath{\mathrm{\hat{#1}}}}
+\newcommand{\opint}[1]{\mathrm{\hat{#1}}}
+\newcommand{\op}[1]{\protect\opint{#1}}
+%
+\newcommand{\avg}[1]{\langle#1\rangle}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\subs}[2]{\left.#1\right|_{#2}}
+\newcommand{\pp}[1]{\left(#1\right)}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ph}[1]{\left[#1\right]}
+\newcommand{\sqr}[1]{\ensuremath{\left(#1\right)^2}}
+\newcommand{\two}[4]{\ensuremath{\left\{\begin{array}{ll}#1&#2\\#3&#4\end{array}\right.}}
+\newcommand{\mtrx}[2]{\ensuremath{\left[\begin{array}{#1}#2\end{array}\right]}}
+\newcommand{\detr}[2]{\ensuremath{\left|\begin{array}{#1}#2\end{array}\right|}}
+%
+\newcommand{\bra}[1]{\ensuremath{\langle #1|}}
+\newcommand{\ket}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\braket}[2]{\ensuremath{\langle #1|#2\rangle}}
+\newcommand{\braketop}[3]{\ensuremath{\langle #1|#2|#3\rangle}}
+%\newcommand{Ã‚Â½}{{\textstyle\frac{1}{2}}}
+%\newcommand{\Ã‚Â½}{{\textstyle\ {\scriptstyle-}\frac{1}{2}}}
+\newcommand{\1}{{\textstyle\ -1}}
+%
+\newcommand{\breath}{\vspace{0.2 cm}}
+%
+\newcommand{\fig}[1]{\begin{center}\includegraphics[width=9.0cm]{#1}\end{center}}
+\newcommand{\maplefig}[1]{\begin{center}\includegraphics*[bbllx=4cm,bblly=4cm,bburx=18cm,bbury=25cm,angle=-90, width=9.0cm]{#1}\end{center}}
+% \newcommand{\maplefig}[1]{\includegraphics*[bbllx=3cm,bblly=3cm,bburx=18.5cm,bbury=25cm,angle=-90, width=7cm]{#1}}
+\newcommand{\eqn}[1]{Eq.~(\ref{eqn:#1})}
+\newcommand{\figr}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\eqns}[2]{Eqs.~(\ref{eqn:#1}) and (\ref{eqn:#2})}
+\newcommand{\eqts}[3]{Eqs.~(\ref{eqn:#1}), (\ref{eqn:#2}) and (\ref{eqn:#3})}
+\newcommand{\eqnr}[2]{Eqs.~(\ref{eqn:#1})--(\ref{eqn:#2})}
+\newcommand{\Eqnr}[2]{Equations~(\ref{eqn:#1})--(\ref{eqn:#2})}
+\newcommand{\figrs}[2]{Figs.~\ref{fig:#1} and \ref{fig:#2}}
+\newcommand{\figrr}[2]{Figs.~\ref{fig:#1}--\ref{fig:#2}}
+\newcommand{\ra}{\ensuremath{\Rightarrow}}
+\newcommand{\Ra}{\ensuremath{\quad\Rightarrow}}
+\newcommand{\rA}{\ensuremath{\Rightarrow\quad}}
+\newcommand{\RA}{\ensuremath{\quad\Rightarrow\quad}}
+\newcommand{\cmnt}[1]{\Bigg\{\mbox{\begin{tabular}{@{}l@{}}#1\end{tabular}}\Bigg\}}
+\newcommand{\idxnote}[1]{\mbox{\scriptsize{\begin{tabular}{@{}c@{}}#1\end{tabular}}}}
+\newcommand{\txt}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\defn}{\equiv}
+%
+\newcommand{\HP}[1]{\ensuremath{\mathrm{H}_{#1}}}
+\newcommand{\NHP}[1]{\ensuremath{\mathrm{\widetilde{H}}_{#1}}}
+\newcommand{\Ai}{\ensuremath{\mathrm{Ai}}}
+\newcommand{\Bi}{\ensuremath{\mathrm{Bi}}}
+\newcommand{\BJ}[1]{\ensuremath{\mathrm{J}_{#1}}}
+\newcommand{\memph}[1]{\mbox{\scriptsize\begin{tabular}{|l|}\hline \\ {\normalsize{$#1$}}\\ \\ \hline\end{tabular}}}
+%\newcommand{\emp}[1]{\texttt{#1}}
+\newcommand{\emp}[1]{$#1$}
+%
+%\newcommand{\tref}[1]{\ensuremath{[\mbox{#1}]}}
+\newcommand{\dint}{\int \! \! \! \int}
+\newcommand{\mperiod}{\ .}
+\newcommand{\mperiodnospace}{.}
+\newcommand{\mcomma}{\ ,}
+%\checkandfixthelayout
+
+% See the ``Memoir customise'' template for some common customisations
+% Don't forget to read the Memoir manual: memman.pdf
+
+%\title{TITLE OF BOOK}
+%\author{NAME OF AUTHOR}
+%\date{} % Delete this line to display the current date
+
+%% BEGIN TITLE
+
+\makeatletter
+\def\maketitle{%
+  \null
+  \thispagestyle{empty}%
+  \vfill
+  \begin{center}\leavevmode
+    \normalfont
+    {\LARGE\raggedleft \@author\par}%
+    \hrulefill\par
+    {\huge\raggedright \@title\par}%
+    \vskip 1cm
+%    {\Large \@date\par}%
+  \end{center}%
+  \vfill
+  \null
+  \cleardoublepage
+  }
+\makeatother
+\author{NAME OF AUTHOR}
+\author{NAME OF AUTHOR}
+\title{TITLE OF BOOK}
+\date{}
+
+
+
+
+
+
+
+\setcounter{chapter}{0}
+
+
+%%% BEGIN DOCUMENT
+
+\begin{document}
+
+\let\cleardoublepage\clearpage
+
+
+%\maketitle
+
+
+
+
+
+
+%\frontmatter
+
+%\null\vfill
+
+%\begin{flushleft}
+%\textit{NAME OF BOOK}
+
+
+%Ã‚Â© COPYRIGHT INFO
+
+
+%ISBN--INFO
+
+%ISBN--13: 
+%\bigskip
+
+
+
+%ALL RIGHTS RESERVED OR COPYRIGHT LICENSE LANGUAGE
+
+
+
+
+%\end{flushleft}
+%\let\cleardoublepage\clearpage
+
+%\mainmatter
+%\sloppy
+
+\chapter{Programmering i Python}
+\noindent Detta är ett laborationshäfte i kandidatprojekt fysik: visualiseringsprojektet.
+
+Man förväntas i huvudsak utföra laborationsmomenten under rubriken 'Grundläggande Python' på egen hand. För momenten under rubriken 'Mer avancerad Python' är man mer välkommen att brett diskutera och samarbeta som man vill. Förväntan är att man under labben hinner lösa alla uppgifter under 'Grundläggande Python', och att man antingen även hunnit med uppgifterna under 'Mer avancerad Python' eller, om labbtiden tagit slut, åtminstone har läst igenom och förstått dem och kan förklara hur man hade tänkt lösa dem. När alla moment är slutförda, eller labbtiden börjar ta slut, påkalla laborationsassistenten för 'redovisning'. Man förväntas då kunna förklara och motivera all kod man har skrivit. \textbf{Se till att du har alla program du skriver som svar på de numrerade frågorna sparade till 'redovisningen'.}
+
+Fundera på egen hand och sök i dokumentationen när ni stöter på problem så länge som det känns meningsfullt, men om ni känner att ni sitter fast, be laborationsassistenten om ledtrådar / hjälp. 
+
+
+
+\section{Dokumentation och hjälp}
+\begin{itemize}
+\item Slides ifrån föreläsningen (finns på Lisam)
+\item http://docs.python.org/
+\item Tutorial: http://docs.python.org/3/tutorial/
+\item Standardbiblioteket: http://docs.python.org/3/library/
+\item Direkthjälp: \pythoninline{help(...)}, \pythoninline{dir(...)}
+\item Frågor och svar: http://stackoverflow.com/ \\ {\scriptsize t.ex. sök: \emph{''merge python dictionaries''} $\rightarrow$ \pythoninline{z = \{**x, **y\}} \par}
+\item Kör: \pythoninline{import this}
+\item Python för vetenskap, scipy-modulen: http://scipy.org/
+\item Python för snabb behandling av numerisk data ($\sim$ matlab), numpy: http://www.numpy.org/
+\end{itemize}
+
+\section{Python-miljön}
+
+Börja med att komma åt Python-miljön. Laborationsassistenten demonstrerar hur.
+
+\begin{shaded}
+\begin{itemize}
+\item[\circled{1}] Kontrollera att du kan köra Python-program genom att få Python att skriva ut texten "Hello world!"
+\item[\circled{2}] Beräkna värdet av 1+1
+\end{itemize}
+\end{shaded}
+
+\section{Grundläggande Python}
+
+\subsection{Aritmetik}
+\begin{shaded}
+\begin{itemize}
+\item[\circled{3}] Man konverterar ifrån Celsius till Fahrenheit med följande ekvation:
+  $$ f = \frac{9c}{5} + 32$$
+Där $f$ är temperatur i Fahrenheit, och $c$ i Celsius. Skriv en funktion som tar $c$ som parameter och returnerar $f$. 
+\item[\circled{4}] Utöka funktionen i (3) till att också kunna konvertera ifrån en temperatur angiven i kelvin. Du får själv välja hur du designar gränssnittet (parametrarna till funktionen), men det måste vara en och samma funktion som kan utföra båda konverteringarna.
+\item[\circled{5}] Någon vill använda Python för att numeriskt verifiera att ekvationerna
+  $$ (a+b)^2 = a^2 + 2ab + b^2$$
+  $$ (a-b)^2 = a^2 - 2ab + b^2$$
+gäller för $a=3,3$ och $b=5,3$. De har skrivit följande program för att göra detta. Programmet innehåller dock ett antal fel. Korrigera dessa så att programmet gör vad som är tänkt.
+\begin{python}
+a = 3,3 b = 5,3
+a2 = a**2
+b2 = b**2
+eq1_sum = a2 + 2ab + b2
+eq2_sum = a2 - 2ab + b2
+eq1_pow = (a + b)**2
+eq2_pow = (a - b)**2
+print('First equation: %g = %g', % (eq1_sum, eq1_pow))
+print('Second equation: %h = %h', % (eq2_pow, eq2_pow))
+\end{python}
+\end{itemize}
+\end{shaded}
+
+\subsection{Flödeskontroll}
+\begin{shaded}
+\begin{itemize}
+\item[\circled{6}] Använd funktionen i (4) för att skriva ut en tabell som sida vid sida visar temperaturen i Celsius ifrån $-20$ till $+40$ i steg om 5, och motsvarande värden i Fahrenheit.
+\item[\circled{7}] Utöka funktionen i (4) att kasta en Exception med texten "Kelvin temperature must be >= 0" om någon skickar in en negativ temperatur för konvertering ifrån Kelvin.
+\item[\circled{8}] Skriv en funktion som approximerar $\sin(x)$ med denna summa
+  $$ \sin(x) \approx x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...$$
+Som parametrar ska man få skicka in ett värde på x, och det antal termer i summan man vill ta med. Om antalet termer inte anges ska default vara 5. Värdet som approximationen ovan av $\sin(x)$ resulterar i ska returneras. Tips: fakultet finns i standardbiblioteket.
+\end{itemize}
+\end{shaded}
+
+\subsection{Listor}
+\begin{shaded}
+\begin{itemize}
+\item[\circled{9}] Skriv en funktion som fungerar som i uppgift (7), förutom att istället för att bara ta en temperatur, tar den en lista av temperaturer och returnerar en där samtliga värden konverterats. Om konvertering sker ifrån Kelvin och något värde i listan är negativt så ska fortfarande samma Exception kastas.
+\item[\circled{10}] Utöka funktionen i (9) så den inte bara opererar på en enkel lista, utan hanterar en godtyckligt nästlad lista av temperaturer(!) D.v.s. om den får [30.2, 40.7, [10.3, 20.5, [10.3, 17.6]], 18.7] så ska funktionen returnera en lista på samma format där respektive temperatur har bytts ut mot värdet i Fahrenheit. Du kan använda testet \pythoninline{type(obj) == list} för att avgöra om det är en enskild temperatur som ska konverteras eller en lista av temperaturer.
+
+\item[\circled{11}] Skriv en funktion som tar en lista av strängar och skriver ut dessa, en per rad, omringad av en ram. D.v.s., om den får: \pythoninline{["Hello", "World", "in", "a", "frame"]} så ska den skriva ut:
+\begin{python}
+*********
+* Hello *
+* World *
+* in    *
+* a     *
+* frame *
+*********
+\end{python}
+\end{itemize}
+\end{shaded}
+
+\subsection{Klasser}
+\begin{shaded}
+\begin{itemize}
+\item[\circled{12}] Skapa tre klasser för objekt som representerar en temperatur: CelsiusTemperature, KelvinTemperature, och FahrenheitTemperature. Låt de alla ärva en generell klass, Temperature. Alla klasser ska implementera metoden print\_temperature() för att skriva ut värdet på temperaturen med enhet. Alla ska ha en konstruktor där man sätter den temperatur som objektet representerar.
+  
+\item[\circled{13}] Skapa en funktion som tar ett (för funktionen okänt) temperatur-objekt och returnerar ett Fahrenheit-objekt som representerar motsvarande temperatur korrekt konverterad till Fahrenheit. Du får dock inte lösa detta med en if-sats eller motsvarande som testar typ-tillhörigheten på det objektet som skickas in. Du ska istället skapa metoder \emph{i klasserna} så att exakt samma kod i konverteringsfunktionen fungerar oavsett vilken temperaturklass som det inskickade objektet tillhör.
+
+\item[\circled{14}] Fyller det gemensamma arvet ifrån Temperature någon funktion i koden du konstruerat i (13)? (I så fall, vilken?)
+\end{itemize}
+\end{shaded}
+
+\subsection{Moduler}
+\begin{shaded}
+\begin{itemize}
+
+\item[\circled{15}] Skapa en egen modul i en separat fil \pythoninline{hello.py} som bara innehåller en funktion \pythoninline{print_message} som skriver ut \pythoninline{Hello world!}. Demonstrera att modulen fungerar genom att i en separat fil importera modulen och anroppa funktionen.
+
+\item[\circled{16}] Skapa en egen modul i en separat katalog som tillhandahåller klasserna i förra uppgiften så att de kan importeras ur modulen. Lägg även med temperaturkonverteringsfunktionen. När du är klar ska följande Pythonkod fungera och skriva ut \pythoninline{86 F} (extra decimaler efter 86 är ok):
+\begin{python}
+import temperature
+from temperature import CelsiusTemperature, KelvinTemperature, FahrenheitTemperature
+
+ctemp = CelsiusTemperature(30.0)
+temperature.to_fahrenheit(ctemp).print_temperature()
+\end{python}
+
+\end{itemize}
+\end{shaded}
+
+
+\section{Mer avancerad Python}
+
+\subsection{Semantisk analys}
+\begin{shaded}
+\begin{itemize}
+\item[\circled{17}] Skriv en funktion som tar en sträng och sätter upp följande datastruktur: en dictionary av sets, där nyckeln är varje ord i texten, och motsvarande set innehåller alla ord som i texten har förekommit som närmast efterföljande detta ord inom samma mening, alla i lowercase.
+
+Dessutom: När du ser ett ord börja en mening så ska det läggas till i set:et för nyckeln None. När du ser ett ord som avslutar en mening, lägg till None i dess motsvarande set.
+
+Exempel: för texten: \pythoninline{This is a test text. The text is an example.}
+Ska man få:
+\begin{python}
+  { None: {'this', 'the'},
+    'this': { 'is' },
+    'is' : { 'a', 'an' },
+    'test' : { 'text' },
+    'text' : { None, 'is'},
+    'the' : { 'text' },
+    'an' : { 'example' }
+    'example' : { None }
+  }
+\end{python}
+\item[\circled{18}] Nedanstående kod laddar ner en längre text baserad på böcker ifrån Project Gutenberg och processar den till att bara innehålla ord + mellanslag + punkter.  Använd denna kod för att ladda ner denna text och kör den genom funktionen i (17) och lagra resultatet i en variabel 'out'. Skriv nu ett program som slumpmässigt går igenom datastrukturen och genererar en ny text enligt följande: (i) Tag ett slumpmässigt element i set:et n = out[None]; (ii) skriv ut detta element; (iii) slå upp out[n] -- om det är None, skriv ut en punkt -- och fortsätt sedan ifrån (ii). Sluta efter 100 genererade meningar.
+\begin{python}
+from urllib.request import urlopen
+import re
+pattern1 = re.compile(r'\s+')
+pattern2 = re.compile(r'[^a-zA-Z .]+')
+url="http://norvig.com/ngrams/smaller.txt"
+s = urlopen(url).read().decode('utf-8')
+s = pattern1.sub(' ',s)
+processed = pattern2.sub('',s)
+\end{python}
+\end{itemize}
+\end{shaded}
+
+\subsection{Parsning}
+\begin{shaded}
+Laborationsassistenten tillhandahåller två filer som hör till elektronstrukturberäkningsprogrammet VASP. POSCAR är en in-fil som beskriver atomstrukturen, och OUTCAR är en fri-forms utfil med resultatet av beräkningen. Strukturen på filen POSCAR är dokumenterad här: 
+  http://cms.mpi.univie.ac.at/vasp/guide/node59.html
+men formatet tillåter en massa alternativ vi bortser ifrån här, så följ istället instruktionerna nedan för hur filen ska läsas. 
+
+ \begin{itemize}
+\item[\circled{19}] Skriv en parser som läser in POSCAR-filen och tar ut de atomära koordinaterna och lagrar i en två-nivås nästlad lista. Ditt program kan således hoppa över de första 5 raderna. Den 6:e raden måste läsas, summan av talen som står här är antalet atomer. Programmet ska sedan hoppa över rader tills tal i 3 kolumner dyker upp. Här läses alla tal in rad-för-rad och listan byggs upp. När en rad för varje atom har lästs in så stoppas inläsningen (efterföljande rader bortses ifrån.) 
+
+\item[\circled{20}] Skriv en parser som läser in OUTCAR-filen där du åtminstone försöker hantera filen generellt (så att din kod inte bara fungerar för exakt detta exemplar av en OUTCAR). Din parser ska ta ut några specifika nummer ur filen: Det \emph{sista} värdet som listas som 'free energy TOTEN', samt de tal som står angivna som "length of vectors" under "VOLUME and BASIS-vectors are now" längst ner i filen. Du ska ta ut dessa genom enbart en enda genomläsning av filen utan att läsa in hela filen i en sträng först (t.ex., genom en loop över rader ur en öppnad fil).
+\end{itemize}
+\end{shaded}
+Namn och liu-id (\textbf{fyll i med bläckpenna}):
+\strut\\
+\strut\\
+Är godkänd på laborationen. Laborationsassistentens underskrift, namnförtydligande och datum:
+\strut\\
+\strut\\
+\underline{\strut\hspace{\linewidth}\strut}
+\end{document}
+
